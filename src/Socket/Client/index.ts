@@ -1,4 +1,6 @@
-console.log(`
+if (typeof global !== 'undefined' && !global.__KAACRASH_BANNER__) {
+    global.__KAACRASH_BANNER__ = true;
+    console.log(`
 \x1b[36m
 ██╗  ██╗ █████╗  █████╗  ██████╗██████╗  █████╗ ███████╗██╗  ██╗
 ██║ ██╔╝██╔══██╗██╔══██╗██╔════╝██╔══██╗██╔══██╗██╔════╝██║  ██║
@@ -9,7 +11,8 @@ console.log(`
 \x1b[32m
      KAACRASH BAILEYS - a WhatsApp Web library by kaastr26
 \x1b[0m
-`);
+    `);
+}
 
-export * from './types'
-export * from './websocket'
+export * from './types';
+export * from './websocket';
