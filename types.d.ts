@@ -1,16 +1,19 @@
-import { EventEmitter } from 'events';
-import { URL } from 'url';
-import type { SocketConfig } from '../../Types/index.js';
-export declare abstract class AbstractSocketClient extends EventEmitter {
-    url: URL;
-    config: SocketConfig;
-    abstract get isOpen(): boolean;
-    abstract get isClosed(): boolean;
-    abstract get isClosing(): boolean;
-    abstract get isConnecting(): boolean;
-    constructor(url: URL, config: SocketConfig);
-    abstract connect(): void;
-    abstract close(): void;
-    abstract send(str: Uint8Array | string, cb?: (err?: Error) => void): boolean;
-}
+import * as constants from './constants.js';
+/**
+ * the binary node WA uses internally for communication
+ *
+ * this is manipulated soley as an object and it does not have any functions.
+ * This is done for easy serialization, to prevent running into issues with prototypes &
+ * to maintain functional code structure
+ * */
+export type BinaryNode = {
+    tag: string;
+    attrs: {
+        [key: string]: string;
+    };
+    content?: BinaryNode[] | string | Uint8Array;
+};
+export type BinaryNodeAttributes = BinaryNode['attrs'];
+export type BinaryNodeData = BinaryNode['content'];
+export type BinaryNodeCodingOptions = typeof constants;
 //# sourceMappingURL=types.d.ts.map
